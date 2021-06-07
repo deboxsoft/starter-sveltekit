@@ -1,0 +1,97 @@
+{
+  "name": "@deboxsoft/webapp",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Nurdiansyah",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "maintainers": [
+    {
+      "name": "Nurdiansyah",
+      "email": "nur.diansyah.ckt@gmail.com"
+    }
+  ],
+  "type": "module",
+  "scripts": {
+    "check-env": "node ../../scripts/js/check-env.cjs",
+    "dev:css": "cross-env TAILWIND_MODE=build postcss src/styles/base.pcss -o static/base.css",
+    "dev:sveltekit": "svelte-kit dev --port=3000",
+    "dev": "run-p check-env dev:css dev:sveltekit",
+    "dev:host": "run-p check-env dev:css \"dev:sveltekit --host\"",
+    "dev:host:open": "run-p check-env dev:css \"dev:sveltekit --open --host\"",
+    "dev:open": "run-p check-env dev:css \"dev:sveltekit --open\"",
+    "format": "prettier --write --plugin-search-dir ./ src/**/*.*",
+    "lint:eslint": "eslint --fix \"src/**/*.{ts,tsx,js,jsx}\"",
+    "lint:svelte": "svelte-check ./",
+    "lint:tsc": "tsc --noEmit",
+    "lint": "run-p lint:svelte lint:eslint lint:tsc"
+  },
+  "dependencies": {
+    "@deboxsoft/module-client": "^1.8.0-18",
+    "@sveltestack/svelte-query": "^1.4.1",
+    "broadcast-channel": "^3.6.0",
+    "cross-fetch": "^3.1.4",
+    "detect-node": "^2.1.0",
+    "graphql": "^15.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.0",
+    "@babel/preset-env": "^7.12.0",
+    "@deboxsoft/svelte-core": "^0.0.0-6",
+    "@fullhuman/postcss-purgecss": "^4.0.3",
+    "@nurdiansyah/cpx": "1.5.0",
+    "@nurdiansyah/eslint-config-devel": "^7.1.0",
+    "@sveltejs/adapter-netlify": "^1.0.0-next.17",
+    "@sveltejs/adapter-node": "^1.0.0-next.24",
+    "@sveltejs/adapter-static": "^1.0.0-next.13",
+    "@sveltejs/adapter-vercel": "^1.0.0-next.22",
+    "@sveltejs/kit": "^1.0.0-next.113",
+    "@tailwindcss/forms": "^0.3.3",
+    "@tailwindcss/typography": "^0.4.1",
+    "@types/node": "^15.12.1",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
+    "autoprefixer": "^10.2.6",
+    "ava": "^3.15.0",
+    "cross-env": "^7.0.3",
+    "cssnano": "^5.0.5",
+    "dotenv": "^10.0.0",
+    "eslint": "7.27.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "eslint-plugin-svelte3": "^3.2.0",
+    "npm-run-all": "^4.1.5",
+    "plop": "^2.7.4",
+    "postcss": "^8.3.0",
+    "postcss-at-rules-variables": "^0.3.0",
+    "postcss-cli": "^8.3.1",
+    "postcss-import": "^14.0.2",
+    "postcss-mixins": "^8.1.0",
+    "postcss-nested": "^5.0.5",
+    "postcss-simple-vars": "^6.0.3",
+    "postcss-syntax": "^0.36.2",
+    "prettier": "^2.2.1",
+    "prettier-plugin-svelte": "^1.0.0",
+    "rollup": "^2.50.6",
+    "svelte": "^3.38.2",
+    "svelte-check": "^2.1.0",
+    "svelte-preprocess": "^4.7.3",
+    "tailwindcss": "^2.1.4",
+    "tslib": "^2.2.0",
+    "typescript": "^4.3.2",
+    "uvu": "^0.5.1",
+    "vite": "^2.3.6",
+    "yargs": "^17.0.1"
+  },
+  "lint-staged": {
+    "./src/**/*.{svelte,ts}": [
+      "eslint --fix"
+    ],
+    "./*.{js,ts,cjs}": [
+      "eslint --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

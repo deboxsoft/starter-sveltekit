@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["DOM", "WebWorker"],
+    "baseUrl": "./src",
+    "jsx": "preserve",
+    "paths": {
+      "$app": ["../.svelte-kit/dev/runtime/app/*", "../.svelte-kit/build/runtime/app/*"],
+      "$lib": ["lib/*"],
+      "__@core": ["lib/core/index.ts"],
+      "__@core/*": ["lib/core/*"],
+      "__@utils": ["lib/utils/index.ts"],
+      "__@utils/*": ["lib/utils/*"],
+      "__@shared": ["lib/shared/index.ts"],
+      "__@shared/*": ["lib/shared/*"],
+      "__@components": ["lib/ui/components/index.ts"],
+      "__@components/*": ["lib/ui/components/*"],
+      "__@ui": ["lib/shared/ui/index.ts"],
+      "__@ui/*": ["lib/shared/ui/*"],
+      "__@modules": ["modules/index.ts"],
+      "__@modules/*": ["modules/*"]
+    }
+  },
+  "exclude": ["../*.js"]
+}
