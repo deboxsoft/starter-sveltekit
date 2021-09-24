@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import Navbar from "__@components/navbars/Navbar.svelte";
 </script>
 <div class="flex flex-col min-h-screen">

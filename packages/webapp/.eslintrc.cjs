@@ -1,5 +1,5 @@
 /* jshint esversion 9  */
-const typescript = require("typescript")
+const typescript = require("typescript");
 module.exports = {
   plugins: [
     "svelte3",

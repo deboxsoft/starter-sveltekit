@@ -5,28 +5,28 @@ const dotenv = require("dotenv");
 const pathToWorkspaceJSON = "./workspace.json";
 
 const filterArguments = (argv, flag) =>
-argv.filter((value) => value.includes(flag)).map((value) => value.split("=")[1]);
+  argv.filter((value) => value.includes(flag)).map((value) => value.split("=")[1]);
 
 const getArguments = (argv, flag) =>
-  filterArguments(argv, flag) ? filterArguments(argv, flag).reduce((value) => value) : '';
+  filterArguments(argv, flag) ? filterArguments(argv, flag).reduce((value) => value) : "";
 
 const writeToFile = (filePath, data) => fs.writeFileSync(filePath, data);
 
 const processArguments = process.argv;
 
-const env = getArguments(processArguments, '--env-file');
+const env = getArguments(processArguments, "--env-file");
 
 const envFile = env
-  ? env === 'local'
-    ? fs.existsSync('.env.local')
-      ? '.env.local'
+  ? env === "local"
+    ? fs.existsSync(".env.local")
+      ? ".env.local"
       : fs.existsSync(`.env.${env}.local`)
-        ? `.env.${env}.local`
-        : fs.existsSync(`.env.${env}`)
-          ? `.env.${env}`
-          : '.env'
-    : '.env'
-  : '.env';
+      ? `.env.${env}.local`
+      : fs.existsSync(`.env.${env}`)
+      ? `.env.${env}`
+      : ".env"
+    : ".env"
+  : ".env";
 
 try {
   if (!fs.existsSync(envFile)) {
@@ -43,35 +43,35 @@ try {
 }
 
 dotenv.config({
-  path: envFile,
+  path: envFile
 });
 
-const project = getArguments(processArguments, '--project');
+const project = getArguments(processArguments, "--project");
 
 const workspace = JSON.parse(
   fs.readFileSync(pathToWorkspaceJSON, {
-    encoding: 'utf8',
-  }),
+    encoding: "utf8"
+  })
 );
 
-const root = workspace['projects'][project]['root'];
-const routes = workspace['projects'][project]['routes'];
-const assets = workspace['projects'][project]['assets'];
+const root = workspace["projects"][project]["root"];
+const routes = workspace["projects"][project]["routes"];
+const assets = workspace["projects"][project]["assets"];
 
 const URL = process.env.VITE_BASE_URL;
-const baseURL = URL ? URL : 'https://localhost:3000';
-const pages = [''];
+const baseURL = URL ? URL : "https://localhost:3000";
+const pages = [""];
 
 fs.readdirSync(`${root}/${routes}`).forEach((file) => {
-  file = file.split('.')[0];
+  file = file.split(".")[0];
 
   if (
-    file.charAt(0) !== '_' &&
-    file !== 'sitemap' &&
-    file !== 'index' &&
-    file !== '$layout' &&
-    file !== '$error' &&
-    file !== 'rss'
+    file.charAt(0) !== "_" &&
+    file !== "sitemap" &&
+    file !== "index" &&
+    file !== "$layout" &&
+    file !== "$error" &&
+    file !== "rss"
   ) {
     pages.push(file);
   }
@@ -84,13 +84,13 @@ ${pages
     (page) => `
 	<url>
 		<loc>
-			${baseURL}/${page ? `${page}/` : ''}
+			${baseURL}/${page ? `${page}/` : ""}
 		</loc>
 		<priority>0.85</priority>
 	</url>
-`,
+`
   )
-  .join('\n')}
+  .join("\n")}
 </urlset>
 `;
 

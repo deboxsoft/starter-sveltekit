@@ -13,6 +13,7 @@ import { resolve } from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
+import { windi } from "svelte-windicss-preprocess";
 
 // Adapters
 import staticAdapter from "@sveltejs/adapter-static";
@@ -48,11 +49,7 @@ const adapter = getAdapters(adapt);
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  preprocess: [
-    sveltePreprocess({
-      postcss: true
-    })
-  ],
+  preprocess: [windi({}), sveltePreprocess({})],
   kit: {
     ssr: isSSR,
     amp: isAMP,
