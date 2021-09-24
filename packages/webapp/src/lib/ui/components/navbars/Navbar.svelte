@@ -1,6 +1,14 @@
-<script lang="ts">
+<script>
   const { class: className = "" } = $$props;
 </script>
+
+
+<div class="navbar {className} bg-blue-500">
+  <div class="navbar-brand">
+    <slot name="brand" />
+  </div>
+  <slot />
+</div>
 
 <style>
   .navbar {
@@ -13,10 +21,3 @@
   }
 
 </style>
-
-<div class="navbar {className} bg-blue-500">
-  <div class="navbar-brand">
-    <slot name="brand" />
-  </div>
-  <slot />
-</div>

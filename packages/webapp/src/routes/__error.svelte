@@ -11,7 +11,7 @@
 
 </script>
 
-<script lang="ts">
+<script>
   // Start: Sevelte Imports
   import { dev } from "$app/env";
   // End: Sevelte Imports
@@ -37,10 +37,6 @@
 
 </script>
 
-<!-- End: Error View Layout -->
-<style>
-</style>
-
 <!-- Start: Header Tage -->
 <!-- End: Header Tage -->
 
@@ -58,3 +54,7 @@
     <!-- End: Error Message container -->
   </div>
 </div>
+<!-- End: Error View Layout -->
+<style>
+</style>
+

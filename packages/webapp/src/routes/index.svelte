@@ -6,4 +6,3 @@
   onMount(() => {});
 
 </script>
-index
